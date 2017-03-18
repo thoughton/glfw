@@ -79,4 +79,11 @@ tests/title
 tests/version
 tests/vulkan
 tests/windows
+/build/
 
+# Buck
+/buck-out/
+/.buckd/
+/buckaroo/
+.buckconfig.local
+BUCKAROO_DEPS

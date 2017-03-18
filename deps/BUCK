@@ -1,0 +1,54 @@
+prebuilt_cxx_library(
+  name = 'khr',
+  header_only = True,
+  header_namespace = 'KHR',
+  exported_headers = subdir_glob([
+    ('KHR', 'khrplatform.h'),
+  ]),
+  visibility = [
+    '//...',
+  ],
+)
+
+cxx_library(
+  name = 'glad',
+  header_namespace = 'glad',
+  exported_headers = subdir_glob([
+    ('glad', 'glad.h'),
+  ]),
+  srcs = [
+    'glad.c',
+  ],
+  visibility = [
+    '//...',
+  ],
+  deps = [
+    ':khr',
+  ],
+)
+
+prebuilt_cxx_library(
+  name = 'linmath',
+  header_only = True,
+  header_namespace = '',
+  exported_headers = subdir_glob([
+    ('', 'linmath.h'),
+  ]),
+  visibility = [
+    '//...',
+  ],
+)
+
+cxx_library(
+  name = 'tinycthread',
+  header_namespace = '',
+  exported_headers = [
+    'tinycthread.h',
+  ],
+  srcs = [
+    'tinycthread.c',
+  ],
+  visibility = [
+    '//...',
+  ],
+)
