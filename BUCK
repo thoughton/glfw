@@ -51,6 +51,7 @@ platform_sources = macos_sources + windows_sources + linux_sources + posix_sourc
                    wgl_sources + wl_sources + vulkan_sources
 
 macos_flags = [
+  '-D_GLFW_BUILD_DLL',
   '-D_GLFW_COCOA',
   '-D_GLFW_USE_MENUBAR',
   '-D_GLFW_USE_RETINA',
@@ -61,6 +62,7 @@ linux_flags = [
 ]
 
 windows_flags = [
+  '-D_GLFW_BUILD_DLL',
   '-D_GLFW_WIN32',
 ]
 
@@ -86,16 +88,15 @@ cxx_library(
   platform_srcs = [
     ('default', macos_sources),
     ('^macos.*', macos_sources),
-    # ('^linux.*', linux_sources), # TODO: Mir? x11?
+    ('^linux.*', linux_sources),
     ('^windows.*', windows_sources),
   ],
   compiler_flags = [
-    '-D_GLFW_BUILD_DLL',
   ],
   platform_compiler_flags = [
     ('default', macos_flags),
     ('^macos.*', macos_flags),
-    # ('^linux.*', linux_flags),
+    ('^linux.*', linux_flags),
     ('^windows.*', windows_flags),
   ],
   exported_platform_linker_flags = [
